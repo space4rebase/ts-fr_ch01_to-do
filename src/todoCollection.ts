@@ -13,9 +13,9 @@ export class TodoCollection {
     while (this.getTodoById(this.nextId)) { 
       this.nextId++;
     }
-    this.todoItems.push(new TodoItem(this.nextId, task));
+    this.todoItems.push(new TodoItem(this.nextId, task)); // adds new Item to the collection
 
-    return this.nextId;
+    return this.nextId; // // returns new todo ID
   }
 
   getTodoById(id: number): TodoItem { 
