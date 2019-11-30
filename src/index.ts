@@ -13,12 +13,14 @@ let collection: TodoCollection = new TodoCollection("Adam", todos);
 console.clear();
 console.log(`${collection.userName}'s Todo List`);
 
-let newId: number = collection.addTodo("Go for run");
-let todoItem: TodoItem = collection.getTodoById(newId);
+//let newId: number = collection.addTodo("Go for run");
+//let todoItem: TodoItem = collection.getTodoById(newId);
+
+collection.getTodoItems(true).forEach(item => item.printDetails());
 
 //console.log(JSON.stringify(todoItem));
 
-todoItem.printDetails();
+//todoItem.printDetails();
 
 // it will give an error:
 
