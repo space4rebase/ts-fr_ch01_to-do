@@ -4,22 +4,23 @@ import { TodoItem } from "./todoItem";
 
 export class TodoCollection { 
   private nextId: number = 1; // we preserve the next ID info
+  private itemMap = new Map<number, TodoItem>();
 
-  constructor(public userName: string, public todoItems: TodoItem[] = []) { 
-    // no statements required
+  constructor(public userName: string, todoItems: TodoItem[] = []) { 
+    todoItems.forEach(item => this.itemMap.set(item.id, item));
   }
 
   addTodo(task: string): number { 
     while (this.getTodoById(this.nextId)) { 
       this.nextId++;
     }
-    this.todoItems.push(new TodoItem(this.nextId, task)); // adds new Item to the collection
+    this.itemMap.set(this.nextId, new TodoItem(this.nextId, task)); // adds new Item to the collection
 
     return this.nextId; // // returns new todo ID
   }
 
   getTodoById(id: number): TodoItem { 
-    return this.todoItems.find(item => item.id === id); // "Find" returns the 1st element that goes undo cond | undefined
+    return this.itemMap.get(id);
   }
 
   markComplete(id: number, complete: boolean) { 
